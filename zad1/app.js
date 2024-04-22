@@ -10,18 +10,14 @@ const server = http.createServer((req, res) => {
     if (req.url === '/') {
         const cars = carsFunctions.getCars();
         
-        console.log(cars); // Wypisuje tablicę samochodów w konsoli
-
+        console.log(cars);
         res.write(htmlGenerator.getHTMLDocumentStart());
         res.write('<body>');
         
-        // Wypisuje informacje o samochodach
         cars.forEach(car => {
             const carInfo = carsFunctions.getCarInformation(car.id);
             res.write(`<p>${carInfo}</p>`);
         });
-
-        // Wypisuje wiek samochodów
         cars.forEach(car => {
             const carAge = carsFunctions.getCarAge(car.id);
             res.write(`<p>${carAge}</p>`);
